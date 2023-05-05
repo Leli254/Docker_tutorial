@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 #django imports
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views.generic import TemplateView
 
 #local imports
 from .models import SalesData
@@ -38,15 +38,12 @@ def sales_data_view(request):
     image_base64 = base64.b64encode(buffer.read()).decode('utf-8')
     buffer.close()
 
-    # Render the template with the chart data
-    context = {'sales_chart': image_base64}
+    # Pass the sales data and chart data to the template
+    context = {'sales_chart': image_base64, 'salesdata': sales_data}
     return render(request, 'sales/sales_chart.html', context)
 
 
-
-#write above view as class based view
-from django.views.generic import TemplateView
-
+#Above view as class based view
 class SalesDataView(TemplateView):
     template_name = 'sales/sales_chart.html'
 

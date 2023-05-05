@@ -3,7 +3,7 @@
 {% block title %}Sales Data{% endblock %}
 
 {% block content %}
-<h1>Sales date for month of {{salesdata.month}}</h1>
+<h1>Sales data for month of {{salesdata.0.month}}</h1>
 
 <div class="container-fluid">
   <div class="row">
@@ -22,7 +22,7 @@
           </tr>
         </thead>
         <tbody>
-          {% for sale in sales_data %}
+          {% for sale in salesdata %}
           <tr>
             <td>{{ sale.product }}</td>
             <td>{{ sale.sales }}</td>
