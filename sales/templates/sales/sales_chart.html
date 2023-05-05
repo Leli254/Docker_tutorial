@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Sales Data{% endblock %}
+
+{% block content %}
+<h1>Sales date for month of {{salesdata.month}}</h1>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Sales Chart</h2>
+      <img src="{{ sales_chart }}" alt="Sales Chart">
+    </div>
+    <div class="col-md-6">
+      <h2>Sales Data</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Sales</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for sale in sales_data %}
+          <tr>
+            <td>{{ sale.product }}</td>
+            <td>{{ sale.sales }}</td>
+            <td>{{ sale.date }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
